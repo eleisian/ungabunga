@@ -1,13 +1,14 @@
 """
 Fine-Tuning Script for Ungabunga LLM
 
-This script fine-tunes a DistilBERT model using Hugging Face's transformers library to process Ungabunga syntax for geography facts.
+This script fine-tunes a Longformer model using Hugging Face's transformers library to process Ungabunga syntax for geography facts.
 """
 
 import os
 import argparse
 from datasets import load_dataset
-from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer, TrainingArguments
+from transformers import LongformerTokenizer, LongformerForSequenceClassification, Trainer, TrainingArguments
+from tokenizers import Tokenizer
 
 def load_ungabunga_dataset(data_dir):
     """Load Ungabunga dataset from text files."""
@@ -27,7 +28,7 @@ def tokenize_function(examples, tokenizer):
     return tokenizer(examples['text'], padding='max_length', truncation=True, max_length=128)
 
 def main():
-    parser = argparse.ArgumentParser(description='Fine-tune DistilBERT on Ungabunga dataset')
+    parser = argparse.ArgumentParser(description='Fine-tune Longformer on Ungabunga dataset')
     parser.add_argument('--data_dir', type=str, default='src/dataset', help='Directory containing dataset files')
     parser.add_argument('--output_dir', type=str, default='./output', help='Directory to save model outputs')
     parser.add_argument('--num_train_epochs', type=int, default=3, help='Number of training epochs')
@@ -38,8 +39,13 @@ def main():
     dataset = load_ungabunga_dataset(args.data_dir)
 
     # Load tokenizer and model
-    tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
-    model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', num_labels=2)
+    custom_tokenizer_path = '../tokenizer/bpe_tokenizer/tokenizer.json'
+    if os.path.exists(custom_tokenizer_path):
+        print(f'Loading custom BPE tokenizer from {custom_tokenizer_path}')
+        tokenizer = Tokenizer.from_file(custom_tokenizer_path)
+    else:
+        tokenizer = LongformerTokenizer.from_pretrained('allenai/longformer-base-4096')
+    model = LongformerForSequenceClassification.from_pretrained('allenai/longformer-base-4096', num_labels=2)
 
     # Tokenize dataset
     tokenized_dataset = dataset.map(lambda x: tokenize_function(x, tokenizer), batched=True)
@@ -68,7 +74,8 @@ def main():
 
     # Save model
     model.save_pretrained(args.output_dir)
-    tokenizer.save_pretrained(args.output_dir)
+    if isinstance(tokenizer, LongformerTokenizer):
+        tokenizer.save_pretrained(args.output_dir)
 
 if __name__ == '__main__':
     main()

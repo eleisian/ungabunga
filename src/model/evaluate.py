@@ -7,9 +7,10 @@ This script evaluates the performance of the fine-tuned Ungabunga model by compa
 import os
 import argparse
 import time
-from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+from transformers import LongformerTokenizer, LongformerForSequenceClassification
 from datasets import load_dataset
 import torch
+from tokenizers import Tokenizer
 
 def load_datasets(data_dir):
     """Load datasets for comparison."""
@@ -28,15 +29,22 @@ def evaluate_token_count(dataset, tokenizer):
     total_tokens = 0
     total_examples = len(dataset['test'])
     for example in dataset['test']:
-        tokens = tokenizer(example['text'], return_tensors='pt')
-        total_tokens += tokens['input_ids'].shape[1]
+        if isinstance(tokenizer, LongformerTokenizer):
+            tokens = tokenizer(example['text'], return_tensors='pt')
+            total_tokens += tokens['input_ids'].shape[1]
+        else:
+            encoding = tokenizer.encode(example['text'])
+            total_tokens += len(encoding.ids)
     return total_tokens / total_examples if total_examples > 0 else 0
 
 def evaluate_processing_speed(dataset, tokenizer):
     """Evaluate processing speed in examples per second."""
     start_time = time.time()
     for example in dataset['test']:
-        tokenizer(example['text'], return_tensors='pt')
+        if isinstance(tokenizer, LongformerTokenizer):
+            tokenizer(example['text'], return_tensors='pt')
+        else:
+            tokenizer.encode(example['text'])
     end_time = time.time()
     total_time = end_time - start_time
     total_examples = len(dataset['test'])
@@ -53,7 +61,11 @@ def evaluate_accuracy(dataset, model, tokenizer):
     for i, example in enumerate(dataset['test']):
         if total >= 10:  # Limit to 10 examples for quick evaluation
             break
-        inputs = tokenizer(example['text'], return_tensors='pt', padding='max_length', truncation=True, max_length=128)
+        if isinstance(tokenizer, LongformerTokenizer):
+            inputs = tokenizer(example['text'], return_tensors='pt', padding='max_length', truncation=True, max_length=4096)
+        else:
+            encoding = tokenizer.encode(example['text'], return_tensors='pt', padding='max_length', truncation=True, max_length=128)
+            inputs = {'input_ids': encoding.ids, 'attention_mask': encoding.attention_mask}
         inputs = {k: v.to(model.device) for k, v in inputs.items()}
         
         with torch.no_grad():
@@ -78,8 +90,13 @@ def main():
     ungabunga_dataset, rdf_dataset, natural_dataset = load_datasets(args.data_dir)
 
     # Load tokenizer and model
-    tokenizer = DistilBertTokenizer.from_pretrained(args.model_dir)
-    model = DistilBertForSequenceClassification.from_pretrained(args.model_dir)
+    tokenizer = LongformerTokenizer.from_pretrained('allenai/longformer-base-4096')
+    # Check for custom BPE tokenizer
+    custom_tokenizer_path = '../tokenizer/bpe_tokenizer/tokenizer.json'
+    if os.path.exists(custom_tokenizer_path):
+        print(f'Loading custom BPE tokenizer from {custom_tokenizer_path}')
+        tokenizer = Tokenizer.from_file(custom_tokenizer_path)
+    model = LongformerForSequenceClassification.from_pretrained(args.model_dir)
 
     # Evaluate token count
     ungabunga_token_count = evaluate_token_count(ungabunga_dataset, tokenizer)

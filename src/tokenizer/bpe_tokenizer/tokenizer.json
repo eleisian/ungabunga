@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "truncation": null,
+  "padding": null,
+  "added_tokens": [],
+  "normalizer": null,
+  "pre_tokenizer": {
+    "type": "Whitespace"
+  },
+  "post_processor": null,
+  "decoder": null,
+  "model": {
+    "type": "BPE",
+    "dropout": null,
+    "unk_token": null,
+    "continuing_subword_prefix": null,
+    "end_of_word_suffix": null,
+    "fuse_unk": false,
+    "byte_fallback": false,
+    "ignore_merges": false,
+    "vocab": {
+      "1": 0,
+      "3": 1,
+      "6": 2,
+      "7": 3,
+      "8": 4,
+      "9": 5,
+      "B": 6,
+      "C": 7,
+      "F": 8,
+      "J": 9,
+      "M": 10,
+      "N": 11,
+      "P": 12,
+      "S": 13,
+      "T": 14,
+      "U": 15,
+      "[": 16,
+      "]": 17,
+      "_": 18,
+      "a": 19,
+      "c": 20,
+      "d": 21,
+      "k": 22,
+      "o": 23,
+      "p": 24,
+      "r": 25,
+      "ap": 26,
+      "N_": 27,
+      "To": 28,
+      "cap": 29,
+      "Tok": 30
+    },
+    "merges": [
+      [
+        "a",
+        "p"
+      ],
+      [
+        "N",
+        "_"
+      ],
+      [
+        "T",
+        "o"
+      ],
+      [
+        "c",
+        "ap"
+      ],
+      [
+        "To",
+        "k"
+      ]
+    ]
+  }
+}
