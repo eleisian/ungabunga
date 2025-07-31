@@ -1,0 +1,4 @@
+<Paris, isCapitalOf, France>, <Paris, capitalSince, 987>
+<Tokyo, isCapitalOf, Japan>, <Tokyo, capitalSince, 1868>
+<Tokyo, hasPopulation, 37000000>
+<Canada, borders, USA>

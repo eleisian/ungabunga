@@ -1,0 +1,94 @@
+Paris is the capital of France since 987.
+Tokyo is the capital of Japan since 1868.
+Tokyo's population is 37 million.
+Canada borders the USA.
+London is the capital of the United Kingdom since 1066.
+Berlin is the capital of Germany since 1990.
+Rome is the capital of Italy since 1871.
+Madrid is the capital of Spain since 1561.
+Canberra is the capital of Australia since 1901.
+Brasilia is the capital of Brazil since 1960.
+Delhi is the capital of India since 1911.
+Beijing is the capital of China since 1949.
+Moscow is the capital of Russia since 1918.
+Seoul is the capital of South Korea since 1948.
+Paris's population is 2.1 million.
+London's population is 9 million.
+Berlin's population is 3.6 million.
+Rome's population is 2.8 million.
+Madrid's population is 3.3 million.
+Canberra's population is 0.6 million.
+Brasilia's population is 0.5 million.
+Delhi's population is 31 million.
+Beijing's population is 21 million.
+Moscow's population is 12.5 million.
+Seoul's population is 9.7 million.
+France borders Germany.
+Germany borders Poland.
+Italy borders France.
+Spain borders France.
+Austria borders Germany.
+Brazil borders Argentina.
+India borders China.
+Russia borders China.
+South Korea borders China.
+Cairo is the capital of Egypt since 969.
+Mexico City is the capital of Mexico since 1821.
+Buenos Aires is the capital of Argentina since 1816.
+Ankara is the capital of Turkey since 1923.
+Islamabad is the capital of Pakistan since 1967.
+Dhaka is the capital of Bangladesh since 1971.
+Bangkok is the capital of Thailand since 1767.
+Hanoi is the capital of Vietnam since 1976.
+Manila is the capital of the Philippines since 1976.
+Bogota is the capital of Colombia since 1819.
+Cairo's population is 9.5 million.
+Mexico City's population is 8.9 million.
+Buenos Aires's population is 3 million.
+Ankara's population is 5.5 million.
+Islamabad's population is 3.5 million.
+Dhaka's population is 14.7 million.
+Bangkok's population is 8.3 million.
+Hanoi's population is 8 million.
+Manila's population is 3.4 million.
+Bogota's population is 7.4 million.
+Egypt borders Libya.
+Mexico borders the USA.
+Argentina borders Chile.
+Turkey borders Greece.
+Pakistan borders India.
+Bangladesh borders India.
+Thailand borders Malaysia.
+Vietnam borders China.
+Philippines borders Indonesia.
+Colombia borders Venezuela.
+Athens is the capital of Greece since 1830.
+Lisbon is the capital of Portugal since 1255.
+Stockholm is the capital of Sweden since 1252.
+Oslo is the capital of Norway since 1814.
+Helsinki is the capital of Finland since 1812.
+Copenhagen is the capital of Denmark since 1443.
+Warsaw is the capital of Poland since 1945.
+Prague is the capital of the Czech Republic since 1918.
+Budapest is the capital of Hungary since 1873.
+Brussels is the capital of Belgium since 1830.
+Athens's population is 0.6 million.
+Lisbon's population is 0.5 million.
+Stockholm's population is 0.9 million.
+Oslo's population is 0.6 million.
+Helsinki's population is 0.6 million.
+Copenhagen's population is 0.6 million.
+Warsaw's population is 1.7 million.
+Prague's population is 1.3 million.
+Budapest's population is 1.7 million.
+Brussels's population is 0.2 million.
+Greece borders Turkey.
+Portugal borders Spain.
+Sweden borders Norway.
+Norway borders Finland.
+Denmark borders Germany.
+Poland borders the Czech Republic.
+Czech Republic borders Hungary.
+Hungary borders Austria.
+Belgium borders France.
+Belgium borders the Netherlands.

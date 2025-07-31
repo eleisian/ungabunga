@@ -1,0 +1,4 @@
+cap Fr Par [T 987]
+cap Jap Tok [T 1868]
+Pop C_Tok 37M
+Bord N_Ca N_US
